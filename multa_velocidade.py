@@ -1,14 +1,18 @@
-def pedir_velocidade():
-    return float(input("Registre a velocidade em que você passou na via: "))
-def gerar_multa():
-    if velocidade > 80:
-        resultado = (velocidade - 80) * 7
-        return resultado
-    else:
-        return 0
-velocidade = pedir_velocidade()
-valor_multa = gerar_multa()
-if valor_multa > 0:
-    print(f"Você foi multado no valor de {valor_multa}")
-else:
-    print("Você está nos limites da via, boa viagem!")
+def calcular_multa(velocidade, limite):
+    if velocidade <= limite:
+        return "✅ Dentro do limite de velocidade."
+    excesso = velocidade - limite
+    valor_multa = excesso * 7
+    return f"""
+    🚨 Multa por excesso de velocidade!
+    Velocidade permitida: {limite} km/h
+    Velocidade do veículo: {velocidade} km/h
+    Excesso: {excesso} km/h
+    Valor da multa: R$ {valor_multa:.2f}"""
+def main():
+    print("🚓 Simulador de multa de Trânsito")
+    limite = float(input("Digite o limite da via (km/h): "))
+    velocidade = float(input("Digite a velocidade do veículo (km/h):"))
+    resultado = calcular_multa(velocidade, limite)
+    print(resultado)
+main()
